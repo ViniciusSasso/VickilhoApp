@@ -1,0 +1,139 @@
+<html ng-app="Vickilho" ng-init="inputText = 'Vickilho'">
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <style>
+    html{
+    font-family: 'HelveticaNeue', Helvetica, Arial, sans-serif;
+    }
+
+    body{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    }
+
+    .dashboard{
+        width: 80%;
+        margin: 0 auto;
+    }
+
+    .vickilhoCard{
+    border: solid #efefef 1px;
+    box-shadow: 2px 2px 2px rgba(60,60,60,.5),4px 4px 8px rgba(200,200,200,.5);
+    padding: 20px;
+    margin: 20px auto;
+    }
+
+    .textoMagico{
+    font-weight: bold;
+    font-size: 120%;
+    }
+
+    .nomesDosVencedores{
+    font-size: 90%;
+    color: #666;    
+    }
+
+    .semPaddingLeft{
+    padding-left: 0;    
+    }
+
+    </style>
+
+<meta charset="utf-8">
+</head>
+<body>
+
+<div class="dashboard">
+<div ng-controller="vickilhoCtrl as mainVickilho" class="row">
+    
+        <div class="col">
+        <frodo></frodo> 
+    </div>
+
+    <!--<div class="vickilhoCard">
+        How now?
+        <div ng-repeat="pessoa in mainVickilho.pessoas"><p>{{ pessoa.name }}</p><p>{{ pessoa.age }}</p><p>{{ pessoa.comment }}</p></div>
+    </div>-->
+
+    
+
+</div>
+
+<div class="row">
+    <div class="col-xs-8 semPaddingLeft">
+        <magic></magic>
+    </div>
+    <div class="vickilhoCard col-xs-4">
+        <div ng-controller="resultadosTeleSena">E estes são os ganhadores da semana na TeleSena de São João:
+        <div ng-repeat="fulano in ganhadores" class="nomesDosVencedores">{{ fulano }}</div>
+        </div>
+
+    </div>
+</div>
+
+</div>
+
+<script src="js/angular.min.js"></script>
+<script>
+
+var vickilhoApp = angular.module('Vickilho',[]);
+
+vickilhoApp.controller('vickilhoCtrl',function(vickilhoModel){
+    var mainVickilho = this;
+    //mainVickilho.pessoas = vickilhoApp.buscaAsPessoa();
+});
+
+vickilhoApp.controller('resultadosTeleSena', function($scope){
+
+$scope.ganhadores =
+    [
+            "Alfreds Futterkiste",
+            "Berglunds Snabbköp",
+            "Centro Comercial Montezuma",
+            "Visconde de Sabugosa",
+            "Joseph Thudergarden"
+    ]
+}
+);
+
+vickilhoApp.directive('frodo',function(){
+    return{
+        scope: true,
+        templateUrl: 'templates/frodo.html' 
+    }
+});
+
+vickilhoApp.directive('magic', function(){
+    return{
+        scope: true,
+        templateUrl: 'templates/magic.html'
+    }
+});
+
+
+vickilhoApp.service('vickilhoModel', function(){
+    var service = this,
+    pessoas = [
+    {
+    name: 'Baltazar Oliveira',
+    age: '28',
+    comment: 'Gosto muito desse site pois sempre atende às minhas expectativas. Recomendo.'
+    },
+    {
+    name: 'Zé Buscapé',
+    age: '55',
+    comment: 'Bao dimais recomendo pros meus fio.'  
+    }
+    ];
+    service.buscaAsPessoa = function(){
+    return pessoas;
+    };
+});
+    </script>
+	<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous">
+    </script>
+
+</body>
+</html
